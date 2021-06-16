@@ -1,7 +1,6 @@
 # retry
 
 [![Build Status](https://img.shields.io/drone/build/owncloud-ci/retry?logo=drone&server=https%3A%2F%2Fdrone.owncloud.com)](https://drone.owncloud.com/owncloud-ci/retry)
-[![Docker Hub](https://img.shields.io/docker/v/owncloudci/retry?logo=docker&label=dockerhub&sort=semver&logoColor=white)](https://hub.docker.com/r/owncloudci/retry)
 [![GitHub contributors](https://img.shields.io/github/contributors/owncloud-ci/retry)](https://github.com/owncloud-ci/retry/graphs/contributors)
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-ci/retry)
 [![License: Apache-2.0](https://img.shields.io/github/license/owncloud-ci/retry)](https://github.com/owncloud-ci/retry/blob/master/LICENSE)

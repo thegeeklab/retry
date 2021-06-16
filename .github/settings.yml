@@ -2,7 +2,6 @@
 repository:
   name: retry
   description: Retry any shell command
-  homepage: https://hub.docker.com/r/owncloudci/retry
   topics: tools
 
   private: false
