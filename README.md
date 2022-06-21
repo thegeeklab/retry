@@ -14,7 +14,7 @@ Install:
 retry is a shell script, so drop it somewhere and make sure it's added to your \$PATH. Or you can use the following one-liner:
 
 ```Shell
-curl -SsL -o /usr/local/bin/retry https://raw.githubusercontent.com/owncloud-ops/retry/master/retry && chmod +x /usr/local/bin/retry"
+curl -SsfL -o /usr/local/bin/retry https://raw.githubusercontent.com/owncloud-ops/retry/master/retry && chmod +x /usr/local/bin/retry"
 ```
 
 ## Usage
