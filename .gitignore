@@ -1,2 +1,8 @@
-.drone.yml
+# OSX
+.DS_Store
+
+# Node
+node_modules
+
+# Misc
 CHANGELOG.md

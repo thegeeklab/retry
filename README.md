@@ -1,9 +1,13 @@
 # retry
 
-[![Build Status](https://img.shields.io/drone/build/owncloud-ci/retry?logo=drone&server=https%3A%2F%2Fdrone.owncloud.com)](https://drone.owncloud.com/owncloud-ci/retry)
-[![GitHub contributors](https://img.shields.io/github/contributors/owncloud-ci/retry)](https://github.com/owncloud-ci/retry/graphs/contributors)
-[![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-ci/retry)
-[![License: Apache-2.0](https://img.shields.io/github/license/owncloud-ci/retry)](https://github.com/owncloud-ci/retry/blob/master/LICENSE)
+Poor-mans servie synchronizer
+
+[![Build Status](https://img.shields.io/drone/build/thegeeklab/retry?logo=drone&server=https%3A%2F%2Fdrone.thegeeklab.de)](https://drone.thegeeklab.de/thegeeklab/retry)
+[![Docker Hub](https://img.shields.io/badge/dockerhub-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/thegeeklab/retry)
+[![Quay.io](https://img.shields.io/badge/quay-latest-blue.svg?logo=docker&logoColor=white)](https://quay.io/repository/thegeeklab/retry)
+[![GitHub contributors](https://img.shields.io/github/contributors/thegeeklab/retry)](https://github.com/thegeeklab/retry/graphs/contributors)
+[![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/thegeeklab/retry)
+[![License: MIT](https://img.shields.io/github/license/thegeeklab/retry)](https://github.com/thegeeklab/retry/blob/main/LICENSE)
 
 Retry any shell command with exponential backoff or constant delay.
 
@@ -14,7 +18,7 @@ Install:
 retry is a shell script, so drop it somewhere and make sure it's added to your \$PATH. Or you can use the following one-liner:
 
 ```Shell
-curl -SsfL -o /usr/local/bin/retry https://raw.githubusercontent.com/owncloud-ci/retry/master/retry && chmod +x /usr/local/bin/retry
+curl -SsfL -o /usr/local/bin/retry https://raw.githubusercontent.com/thegeeklab/retry/main/retry && chmod +x /usr/local/bin/retry
 ```
 
 ## Usage
@@ -128,12 +132,10 @@ Before retry #3: sleeping 1.2 seconds
 Passed at attempt 3
 ```
 
+## Contributors
+
+Special thanks to all [contributors](https://github.com/thegeeklab/retry/graphs/contributors). If you would like to contribute, please see the [instructions](https://github.com/thegeeklab/retry/blob/main/CONTRIBUTING.md).
+
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](https://github.com/owncloud-ci/retry/blob/master/LICENSE) file for details.
-
-## Copyright
-
-```Text
-Copyright (c) 2022 ownCloud GmbH
-```
+This project is licensed under the Apache 2.0 License - see the [LICENSE](https://github.com/thegeeklab/retry/blob/main/LICENSE) file for details.

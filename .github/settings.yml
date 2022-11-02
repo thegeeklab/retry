@@ -1,16 +1,14 @@
----
 repository:
   name: retry
   description: Retry any shell command
-  topics: tools
+  topics: cli, tools, oci
 
   private: false
   has_issues: true
-  has_projects: false
   has_wiki: false
-  has_downloads: false
+  has_downloads: true
 
-  default_branch: master
+  default_branch: main
 
   allow_squash_merge: true
   allow_merge_commit: true
@@ -45,22 +43,14 @@ labels:
     color: ffffff
     description: This will not be worked on
 
-teams:
-  - name: bot
-    permission: admin
-
 branches:
-  - name: master
+  - name: main
     protection:
       required_pull_request_reviews: null
       required_status_checks:
         strict: false
         contexts:
           - continuous-integration/drone/pr
-      enforce_admins: false
-      restrictions:
-        apps:
-          - renovate
-        users: []
-        teams:
-          - bot
+      enforce_admins: true
+      required_linear_history: true
+      restrictions: null
