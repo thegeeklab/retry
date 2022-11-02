@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 @test "retry echo should work" {
-  run ./retry echo u work good
+  run ./retry 'echo "u work good"'
 
   [ "$output" = "u work good" ]
 }
@@ -10,5 +10,5 @@
   run ./retry -t 1 'echo "y u no work"; false'
 
   [ "$status" -ne 0 ]
-  [ "$output" = "y u no work" ]
+  [[ "$output" =~ "y u no work" ]]
 }
