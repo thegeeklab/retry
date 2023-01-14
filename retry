@@ -9,7 +9,7 @@ __sleep_amount() {
   else
     #TODO: check for awk
     #TODO: check if user would rather use one of the other possible dependencies: python, ruby, bc, dc
-    sleep_time=$(awk "BEGIN {t = $min_sleep * $(((1 << (_retry_attempts - 1)))); print (t > $max_sleep ? $max_sleep : t)}")
+    sleep_time=$(awk "BEGIN {t = $min_sleep * $((1 << (_retry_attempts - 1))); print (t > $max_sleep ? $max_sleep : t)}")
   fi
 }
 
