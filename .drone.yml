@@ -75,7 +75,7 @@ depends_on:
 
 ---
 kind: pipeline
-name: build-container-amd64
+name: build-container
 
 platform:
   os: linux
@@ -83,27 +83,34 @@ platform:
 
 steps:
   - name: dryrun
-    image: thegeeklab/drone-docker:19
+    image: thegeeklab/drone-docker-buildx:20
     settings:
-      dockerfile: docker/Dockerfile.amd64
+      dockerfile: Dockerfile.multiarch
       dry_run: true
-      password:
-        from_secret: docker_password
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/arm/v7
+        - linux/arm/v6
+      provenance: false
       repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
     when:
       ref:
         - refs/pull/**
 
   - name: publish-dockerhub
-    image: thegeeklab/drone-docker:19
+    image: thegeeklab/drone-docker-buildx:20
     settings:
       auto_tag: true
-      auto_tag_suffix: amd64
-      dockerfile: docker/Dockerfile.amd64
+      dockerfile: Dockerfile.multiarch
       password:
         from_secret: docker_password
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/arm/v7
+        - linux/arm/v6
+      provenance: false
       repo: thegeeklab/${DRONE_REPO_NAME}
       username:
         from_secret: docker_username
@@ -111,15 +118,22 @@ steps:
       ref:
         - refs/heads/main
         - refs/tags/**
+    depends_on:
+      - dryrun
 
   - name: publish-quay
-    image: thegeeklab/drone-docker:19
+    image: thegeeklab/drone-docker-buildx:20
     settings:
       auto_tag: true
-      auto_tag_suffix: amd64
-      dockerfile: docker/Dockerfile.amd64
+      dockerfile: Dockerfile.multiarch
       password:
         from_secret: quay_password
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/arm/v7
+        - linux/arm/v6
+      provenance: false
       registry: quay.io
       repo: quay.io/thegeeklab/${DRONE_REPO_NAME}
       username:
@@ -128,136 +142,8 @@ steps:
       ref:
         - refs/heads/main
         - refs/tags/**
-
-trigger:
-  ref:
-    - refs/heads/main
-    - refs/tags/**
-    - refs/pull/**
-
-depends_on:
-  - test
-
----
-kind: pipeline
-name: build-container-arm64
-
-platform:
-  os: linux
-  arch: arm64
-
-steps:
-  - name: dryrun
-    image: thegeeklab/drone-docker:19
-    settings:
-      dockerfile: docker/Dockerfile.arm64
-      dry_run: true
-      password:
-        from_secret: docker_password
-      repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
-    when:
-      ref:
-        - refs/pull/**
-
-  - name: publish-dockerhub
-    image: thegeeklab/drone-docker:19
-    settings:
-      auto_tag: true
-      auto_tag_suffix: arm64
-      dockerfile: docker/Dockerfile.arm64
-      password:
-        from_secret: docker_password
-      repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
-    when:
-      ref:
-        - refs/heads/main
-        - refs/tags/**
-
-  - name: publish-quay
-    image: thegeeklab/drone-docker:19
-    settings:
-      auto_tag: true
-      auto_tag_suffix: arm64
-      dockerfile: docker/Dockerfile.arm64
-      password:
-        from_secret: quay_password
-      registry: quay.io
-      repo: quay.io/thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: quay_username
-    when:
-      ref:
-        - refs/heads/main
-        - refs/tags/**
-
-trigger:
-  ref:
-    - refs/heads/main
-    - refs/tags/**
-    - refs/pull/**
-
-depends_on:
-  - test
-
----
-kind: pipeline
-name: build-container-arm
-
-platform:
-  os: linux
-  arch: arm
-
-steps:
-  - name: dryrun
-    image: thegeeklab/drone-docker:19
-    settings:
-      dockerfile: docker/Dockerfile.arm
-      dry_run: true
-      password:
-        from_secret: docker_password
-      repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
-    when:
-      ref:
-        - refs/pull/**
-
-  - name: publish-dockerhub
-    image: thegeeklab/drone-docker:19
-    settings:
-      auto_tag: true
-      auto_tag_suffix: arm
-      dockerfile: docker/Dockerfile.arm
-      password:
-        from_secret: docker_password
-      repo: thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: docker_username
-    when:
-      ref:
-        - refs/heads/main
-        - refs/tags/**
-
-  - name: publish-quay
-    image: thegeeklab/drone-docker:19
-    settings:
-      auto_tag: true
-      auto_tag_suffix: arm
-      dockerfile: docker/Dockerfile.arm
-      password:
-        from_secret: quay_password
-      registry: quay.io
-      repo: quay.io/thegeeklab/${DRONE_REPO_NAME}
-      username:
-        from_secret: quay_username
-    when:
-      ref:
-        - refs/heads/main
-        - refs/tags/**
+    depends_on:
+      - dryrun
 
 trigger:
   ref:
@@ -277,34 +163,6 @@ platform:
   arch: amd64
 
 steps:
-  - name: manifest-dockerhub
-    image: plugins/manifest
-    settings:
-      auto_tag: true
-      ignore_missing: true
-      password:
-        from_secret: docker_password
-      spec: docker/manifest.tmpl
-      username:
-        from_secret: docker_username
-    when:
-      status:
-        - success
-
-  - name: manifest-quay
-    image: plugins/manifest
-    settings:
-      auto_tag: true
-      ignore_missing: true
-      password:
-        from_secret: quay_password
-      spec: docker/manifest-quay.tmpl
-      username:
-        from_secret: quay_username
-    when:
-      status:
-        - success
-
   - name: pushrm-dockerhub
     pull: always
     image: chko/docker-pushrm:1
@@ -358,12 +216,10 @@ trigger:
     - failure
 
 depends_on:
-  - build-container-amd64
-  - build-container-arm
-  - build-container-arm64
+  - build-container
 
 ---
 kind: signature
-hmac: 1cb682c6e2f382da9704f103c97b12d5ce10f407b0bda7d0a8377581fea34ae3
+hmac: 7d600dbb14c9ca4b5b999d1fd6813b36658d43ad35c461cc8bd16138dea4d8ee
 
 ...
