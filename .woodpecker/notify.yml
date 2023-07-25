@@ -1,6 +1,6 @@
 ---
 when:
-  - ref: refs/heads/main
+  - ref: refs/heads/${CI_REPO_DEFAULT_BRANCH}
   - ref: refs/tags/**
 
 steps:
@@ -23,3 +23,4 @@ steps:
 
 depends_on:
   - test
+  - binary
