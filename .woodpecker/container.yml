@@ -24,6 +24,7 @@ steps:
   debug:
     image: docker.io/alpine
     commands:
+      - echo ${CI_WORKSPACE}
       - ls -la
 
   publish-dockerhub:
