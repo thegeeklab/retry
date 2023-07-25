@@ -19,7 +19,8 @@ steps:
   debug:
     image: docker.io/alpine
     commands:
-      - echo ${CI_COMMIT_SHA}
+      - echo $(PWD)
+      - env
       - echo ${CI_WORKSPACE}
       - ls -la
 
