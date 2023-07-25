@@ -10,20 +10,15 @@ steps:
     settings:
       dockerfile: Dockerfile.multiarch
       dry_run: true
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/arm/v7
+        - linux/arm/v6
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
-      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME},dest=/woodpecker/src/github.com/thegeeklab/retry/${CI_REPO_NAME}.tar"
     when:
       - ref: refs/pull/**
-
-  debug:
-    image: docker.io/alpine
-    commands:
-      - echo $(pwd)
-      - env
-      - echo $${CI_WORKSPACE}
-      - echo ${CI_WORKSPACE}
-      - ls -la
 
   publish-dockerhub:
     group: build
