@@ -19,8 +19,9 @@ steps:
   debug:
     image: docker.io/alpine
     commands:
-      - echo $(PWD)
+      - echo $(pwd)
       - env
+      - echo $CI_WORKSPACE
       - echo ${CI_WORKSPACE}
       - ls -la
 
