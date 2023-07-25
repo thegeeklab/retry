@@ -2,7 +2,7 @@
 
 Poor-mans servie synchronizer
 
-[![Build Status](https://img.shields.io/drone/build/thegeeklab/retry?logo=drone&server=https%3A%2F%2Fdrone.thegeeklab.de)](https://drone.thegeeklab.de/thegeeklab/retry)
+[![Build Status](https://ci.thegeeklab.de/api/badges/4/status.svg)](https://ci.thegeeklab.de/4)
 [![Docker Hub](https://img.shields.io/badge/dockerhub-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/thegeeklab/retry)
 [![Quay.io](https://img.shields.io/badge/quay-latest-blue.svg?logo=docker&logoColor=white)](https://quay.io/repository/thegeeklab/retry)
 [![GitHub contributors](https://img.shields.io/github/contributors/thegeeklab/retry)](https://github.com/thegeeklab/retry/graphs/contributors)

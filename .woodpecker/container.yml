@@ -6,7 +6,7 @@ when:
 
 steps:
   dryrun:
-    image: thegeeklab/drone-docker-buildx:23
+    image: quay.io/thegeeklab/drone-docker-buildx:23
     settings:
       dockerfile: Dockerfile.multiarch
       dry_run: true
@@ -16,13 +16,13 @@ steps:
         - linux/arm/v7
         - linux/arm/v6
       provenance: false
-      repo: thegeeklab/${DRONE_REPO_NAME}
+      repo: thegeeklab/${CI_REPO_NAME}
     when:
       - ref: refs/pull/**
 
   publish-dockerhub:
     group: build
-    image: thegeeklab/drone-docker-buildx:23
+    image: quay.io/thegeeklab/drone-docker-buildx:23
     settings:
       auto_tag: true
       dockerfile: Dockerfile.multiarch
@@ -34,7 +34,7 @@ steps:
         - linux/arm/v7
         - linux/arm/v6
       provenance: false
-      repo: thegeeklab/${DRONE_REPO_NAME}
+      repo: thegeeklab/${CI_REPO_NAME}
       username:
         from_secret: docker_username
     when:
@@ -43,7 +43,7 @@ steps:
 
   publish-quay:
     group: build
-    image: thegeeklab/drone-docker-buildx:23
+    image: quay.io/thegeeklab/drone-docker-buildx:23
     settings:
       auto_tag: true
       dockerfile: Dockerfile.multiarch
@@ -56,7 +56,7 @@ steps:
         - linux/arm/v6
       provenance: false
       registry: quay.io
-      repo: quay.io/thegeeklab/${DRONE_REPO_NAME}
+      repo: quay.io/thegeeklab/${CI_REPO_NAME}
       username:
         from_secret: quay_username
     when:

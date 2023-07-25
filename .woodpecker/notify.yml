@@ -23,4 +23,5 @@ steps:
 
 depends_on:
   - test
-  - binary
+  - container
+  - release
