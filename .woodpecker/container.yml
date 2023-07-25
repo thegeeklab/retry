@@ -21,6 +21,11 @@ steps:
     when:
       - ref: refs/pull/**
 
+  debug:
+    image: docker.io/alpine
+    commands:
+      - ls -la
+
   publish-dockerhub:
     group: build
     image: quay.io/thegeeklab/drone-docker-buildx:23
@@ -63,3 +68,6 @@ steps:
     when:
       - ref: refs/heads/main
       - ref: refs/tags/**
+
+depends_on:
+  - test
