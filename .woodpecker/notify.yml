@@ -1,7 +1,10 @@
 ---
 when:
-  - ref: refs/heads/main
-  - ref: refs/tags/**
+  - event:
+      - tag
+  - event: push
+    branch:
+      - ${CI_REPO_DEFAULT_BRANCH}
 runs_on:
   - success
   - failure

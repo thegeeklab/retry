@@ -1,8 +1,11 @@
 ---
 when:
-  - ref: refs/heads/main
-  - ref: refs/tags/**
-  - ref: refs/pull/**
+  - event:
+      - pull_request
+      - tag
+  - event: push
+    branch:
+      - ${CI_REPO_DEFAULT_BRANCH}
 
 steps:
   dryrun:
@@ -18,7 +21,8 @@ steps:
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
     when:
-      - ref: refs/pull/**
+      - event:
+        - pull_request
 
   publish-dockerhub:
     group: build
@@ -38,8 +42,11 @@ steps:
       username:
         from_secret: docker_username
     when:
-      - ref: refs/heads/main
-      - ref: refs/tags/**
+      - event:
+          - tag
+      - event: push
+        branch:
+          - ${CI_REPO_DEFAULT_BRANCH}
 
   publish-quay:
     group: build
@@ -60,8 +67,11 @@ steps:
       username:
         from_secret: quay_username
     when:
-      - ref: refs/heads/main
-      - ref: refs/tags/**
+      - event:
+          - tag
+      - event: push
+        branch:
+          - ${CI_REPO_DEFAULT_BRANCH}
 
 depends_on:
   - test

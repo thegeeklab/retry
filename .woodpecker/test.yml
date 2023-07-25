@@ -1,8 +1,11 @@
 ---
 when:
-  - ref: refs/heads/main
-  - ref: refs/tags/**
-  - ref: refs/pull/**
+  - event:
+      - pull_request
+      - tag
+  - event: push
+    branch:
+      - ${CI_REPO_DEFAULT_BRANCH}
 
 steps:
   lint:

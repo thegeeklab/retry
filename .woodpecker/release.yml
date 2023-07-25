@@ -1,8 +1,11 @@
 ---
 when:
-  - ref: refs/heads/main
-  - ref: refs/tags/**
-  - ref: refs/pull/**
+  - event:
+      - pull_request
+      - tag
+  - event: push
+    branch:
+      - ${CI_REPO_DEFAULT_BRANCH}
 
 steps:
   checksum:
@@ -34,7 +37,8 @@ steps:
       overwrite: true
       title: ${CI_COMMIT_TAG}
     when:
-      - ref: refs/tags/**
+    - event:
+      - tag
 
 depends_on:
   - test
