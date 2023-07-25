@@ -17,6 +17,7 @@ steps:
         - linux/arm/v6
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
+      output: "type=tar,dest=${CI_WORKSPACE}/${CI_REPO_NAME}.tar"
     when:
       - ref: refs/pull/**
 
