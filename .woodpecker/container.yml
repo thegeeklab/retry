@@ -12,7 +12,7 @@ steps:
       dry_run: true
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
-      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME},dest=/woodpecker/src/github.com/thegeeklab/retry/"
+      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME},dest=/woodpecker/src/github.com/thegeeklab/retry/${CI_REPO_NAME}.tar"
     when:
       - ref: refs/pull/**
 
