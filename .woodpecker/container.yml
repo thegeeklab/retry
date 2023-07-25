@@ -10,14 +10,9 @@ steps:
     settings:
       dockerfile: Dockerfile.multiarch
       dry_run: true
-      platforms:
-        - linux/amd64
-        - linux/arm64
-        - linux/arm/v7
-        - linux/arm/v6
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
-      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME},dest=${CI_WORKSPACE}"
+      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME}"
     when:
       - ref: refs/pull/**
 
