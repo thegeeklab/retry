@@ -12,7 +12,7 @@ steps:
       dry_run: true
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
-      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME}"
+      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME},dest=/woodpecker/src/github.com/thegeeklab/retry/"
     when:
       - ref: refs/pull/**
 
@@ -21,7 +21,7 @@ steps:
     commands:
       - echo $(pwd)
       - env
-      - echo $CI_WORKSPACE
+      - echo $${CI_WORKSPACE}
       - echo ${CI_WORKSPACE}
       - ls -la
 
