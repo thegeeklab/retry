@@ -1,0 +1,18 @@
+---
+when:
+  - ref: refs/heads/${CI_REPO_DEFAULT_BRANCH}
+  - ref: refs/tags/**
+  - ref: refs/pull/**
+
+steps:
+  lint:
+    group: test
+    image: docker.io/koalaman/shellcheck-alpine:stable
+    commands:
+      - shellcheck ./retry
+
+  test:
+    group: test
+    image: docker.io/bats/bats
+    commands:
+      - bats ./retry.bats
