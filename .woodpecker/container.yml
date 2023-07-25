@@ -17,13 +17,14 @@ steps:
         - linux/arm/v6
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
-      output: "type=tar,dest=${CI_WORKSPACE}/${CI_REPO_NAME}.tar"
+      output: "type=docker,tar=true,name=thegeeklab/${CI_REPO_NAME},dest=${CI_WORKSPACE}"
     when:
       - ref: refs/pull/**
 
   debug:
     image: docker.io/alpine
     commands:
+      - echo ${CI_COMMIT_SHA}
       - echo ${CI_WORKSPACE}
       - ls -la
 
