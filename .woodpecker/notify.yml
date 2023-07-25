@@ -2,6 +2,9 @@
 when:
   - ref: refs/heads/main
   - ref: refs/tags/**
+runs_on:
+  - success
+  - failure
 
 steps:
   matrix:
