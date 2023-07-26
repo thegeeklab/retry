@@ -20,7 +20,7 @@ steps:
       template: >-
         Status: **{{ .Build.Status }}**<br/>
         Build: [{{ .Repo.Owner }}/{{ .Repo.Name }}]({{ .Build.Link }}){{ if .Build.Branch }} ({{ .Build.Branch }}){{ end }} by {{ .Commit.Author }}<br/>
-        Message: {{ .Commit.Message.Title }}"
+        Message: {{ .Commit.Message.Title }}
       username:
         from_secret: matrix_username
     when:
