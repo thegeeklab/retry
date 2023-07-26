@@ -1,9 +1,7 @@
 ---
 when:
-  - event:
-      - pull_request
-      - tag
-  - event: push
+  - event: [pull_request, tag]
+  - event: [push, manual]
     branch:
       - ${CI_REPO_DEFAULT_BRANCH}
 
@@ -37,8 +35,7 @@ steps:
       overwrite: true
       title: ${CI_COMMIT_TAG}
     when:
-    - event:
-      - tag
+    - event: [tag]
 
 depends_on:
   - test

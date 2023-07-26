@@ -1,13 +1,11 @@
 ---
 when:
-  - event:
-      - tag
-  - event: push
+  - event: [tag]
+  - event: [push, manual]
     branch:
       - ${CI_REPO_DEFAULT_BRANCH}
-runs_on:
-  - success
-  - failure
+
+runs_on: [success, failure]
 
 steps:
   matrix:
@@ -19,13 +17,14 @@ steps:
         from_secret: matrix_password
       roomid:
         from_secret: matrix_roomid
-      template: "Status: **{{ .Build.Status }}**<br/> Build: [{{ .Repo.Owner }}/{{ .Repo.Name }}]({{ .Build.Link }}){{ if .Build.Branch }} ({{ .Build.Branch }}){{ end }} by {{ .Commit.Author }}<br/> Message: {{ .Commit.Message.Title }}"
+      template: >-
+        Status: **{{ .Build.Status }}**<br/>
+        Build: [{{ .Repo.Owner }}/{{ .Repo.Name }}]({{ .Build.Link }}){{ if .Build.Branch }} ({{ .Build.Branch }}){{ end }} by {{ .Commit.Author }}<br/>
+        Message: {{ .Commit.Message.Title }}"
       username:
         from_secret: matrix_username
     when:
-      - status:
-        - success
-        - failure
+      - status: [success, failure]
 
 depends_on:
   - test

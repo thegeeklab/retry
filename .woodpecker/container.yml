@@ -1,9 +1,7 @@
 ---
 when:
-  - event:
-      - pull_request
-      - tag
-  - event: push
+  - event: [pull_request, tag]
+  - event: [push, manual]
     branch:
       - ${CI_REPO_DEFAULT_BRANCH}
 
@@ -21,8 +19,7 @@ steps:
       provenance: false
       repo: thegeeklab/${CI_REPO_NAME}
     when:
-      - event:
-        - pull_request
+      - event: [pull_request]
 
   publish-dockerhub:
     group: build
@@ -42,9 +39,8 @@ steps:
       username:
         from_secret: docker_username
     when:
-      - event:
-          - tag
-      - event: push
+      - event: [tag]
+      - event: [push, manual]
         branch:
           - ${CI_REPO_DEFAULT_BRANCH}
 
@@ -67,11 +63,11 @@ steps:
       username:
         from_secret: quay_username
     when:
-      - event:
-          - tag
-      - event: push
+      - event: [tag]
+      - event: [push, manual]
         branch:
           - ${CI_REPO_DEFAULT_BRANCH}
+
 
 depends_on:
   - test
