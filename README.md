@@ -1,8 +1,8 @@
 # retry
 
-Poor-mans servie synchronizer
+Retry any shell command
 
-[![Build Status](https://ci.thegeeklab.de/api/badges/4/status.svg)](https://ci.thegeeklab.de/repos/4)
+[![Build Status](https://ci.thegeeklab.de/api/badges/thegeeklab/retry/status.svg)](https://ci.thegeeklab.de/repos/thegeeklab/retry)
 [![Docker Hub](https://img.shields.io/badge/dockerhub-latest-blue.svg?logo=docker&logoColor=white)](https://hub.docker.com/r/thegeeklab/retry)
 [![Quay.io](https://img.shields.io/badge/quay-latest-blue.svg?logo=docker&logoColor=white)](https://quay.io/repository/thegeeklab/retry)
 [![GitHub contributors](https://img.shields.io/github/contributors/thegeeklab/retry)](https://github.com/thegeeklab/retry/graphs/contributors)
