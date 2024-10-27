@@ -6,14 +6,14 @@ when:
       - ${CI_REPO_DEFAULT_BRANCH}
 
 steps:
-  lint:
-    group: test
+  - name: lint
     image: docker.io/koalaman/shellcheck-alpine:stable
+    depends_on: []
     commands:
       - shellcheck ./retry
 
-  test:
-    group: test
+  - name: test
     image: docker.io/bats/bats
+    depends_on: []
     commands:
       - bats ./retry.bats
