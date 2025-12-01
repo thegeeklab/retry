@@ -105,7 +105,7 @@ bash: poop: command not found
 Fail command:
 
 ```Shell
-retry -t 3 -f 'echo "oh poopsickles"' 'echo "y u no work"; false'
+retry -t 3 -f 'echo "oh no"' 'echo "y u no work"; false'
 
 y u no work
 Before retry #1: sleeping 0.3 seconds
@@ -115,7 +115,7 @@ y u no work
 Before retry #3: sleeping 1.2 seconds
 y u no work
 Retries exhausted, running fail script
-oh poopsickles
+oh no
 ```
 
 Last attempt passed:

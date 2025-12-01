@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# cspell:ignore GETOPT longoptions
 
 GETOPT_BIN=$IN_GETOPT_BIN
 GETOPT_BIN=${GETOPT_BIN:-getopt}
