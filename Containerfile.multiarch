@@ -7,8 +7,9 @@ LABEL org.opencontainers.image.url="https://github.com/thegeeklab/retry"
 LABEL org.opencontainers.image.source="https://github.com/thegeeklab/retry"
 LABEL org.opencontainers.image.documentation="https://github.com/thegeeklab/retry"
 
-ADD retry /usr/local/bin/retry && \
-    apk upgrade --no-cache libcrypto3
+ADD retry /usr/local/bin/retry
+
+RUN apk upgrade --no-cache libcrypto3
 
 USER root
 CMD []
